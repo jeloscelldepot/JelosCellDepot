@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JELOS CELL DEPOT | Tech Solutions</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* === CSS VARIABLES, RESET, & ANIMATIONS === */
+        :root {
+            /* Custom Palette */
+            --bg-dark: #121212;
+            --text-light: #F0F1F2;
+            --accent-light: #70A6C1;
+            --accent-med: #315594;
+            --accent-dark: #2F3675;
+
+            /* Functional Mappings */
+            --bg-main: var(--bg-dark);
+            --bg-card: var(--accent-dark); /* Using the dark blue for cards to add depth */
+            --bg-surface: #1a1a1a; /* Slight offset from pure background */
+            --accent: var(--accent-light);
+            --accent-hover: var(--accent-med);
+            --text-main: var(--text-light);
+            --text-muted: rgba(240, 241, 242, 0.7);
+            
+            --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Clean, professional keyframes */
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Generic animate-on-scroll classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === TYPOGRAPHY & BUTTONS === */
+        h1, h2, h3, h4 {
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--text-main);
+            padding: 0.85rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(240, 241, 242, 0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--text-main);
+            color: var(--bg-main);
+            border-color: var(--text-main);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(240, 241, 242, 0.1);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-hover); /* Medium blue */
+            color: var(--text-main);
+            border-color: var(--accent-hover);
+        }
+
+        .btn-accent:hover {
+            background-color: var(--accent); /* Light blue */
+            color: var(--bg-main);
+            border-color: var(--accent);
+            box-shadow: 0 6px 16px rgba(112, 166, 193, 0.25);
+        }
+
+        .btn-maps {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            padding: 0.6rem 1.2rem;
+            width: auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-main);
+            border-bottom: 1px solid rgba(240, 241, 242, 0.1);
+            padding-bottom: 1rem;
+            display: inline-block;
+            animation: fadeInDown 0.8s ease backwards 0.2s;
+        }
+
+        /* === HEADER & NAVIGATION === */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(18, 18, 18, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(240, 241, 242, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--accent);
+        }
+
+        .logo:hover {
+            color: var(--accent);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .menu-toggle {
+            display: none;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* === GENERAL SECTION LAYOUT === */
+        section {
+            padding: 8rem 5%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* === HERO SECTION === */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 5%;
+            background: linear-gradient(to right, rgba(18,18,18,0.95) 0%, rgba(18,18,18,0.6) 100%), url('728226239_1728826555917613_314398683045155655_n.jpg') center/cover no-repeat;
+            position: relative;
+            max-width: 100%;
+            margin-top: 0;
+        }
+
+        .hero-content {
+            max-width: 1000px; /* Expanded slightly to fit the new single-line header */
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.8s ease backwards 0.4s;
+        }
+
+        /* New styling for the location text in the hero header */
+        .hero-content .location-text {
+            font-size: 0.45em; /* Scales perfectly relative to the main h1 size */
+            font-weight: 300; /* Thin font */
+            color: var(--text-muted);
+            letter-spacing: 0;
+            margin-left: 10px;
+            display: inline-block;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease backwards 0.6s;
+        }
+
+        .hero-buttons {
+            animation: fadeInUp 0.8s ease backwards 0.8s;
+        }
+
+        /* === SERVICES SECTION === */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            background-color: var(--bg-surface);
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            border-radius: 8px;
+            border: 1px solid rgba(240, 241, 242, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+            border-color: rgba(112, 166, 193, 0.3);
+        }
+
+        .service-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s;
+            z-index: 1;
+            opacity: 0.4;
+            filter: grayscale(40%);
+        }
+
+        .service-card:hover .service-bg {
+            transform: scale(1.05);
+            opacity: 0.6;
+            filter: grayscale(0%);
+        }
+
+        .service-content {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(to top, rgba(18,18,18,0.95) 0%, rgba(18,18,18,0) 100%);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 4rem 2rem 2rem 2rem;
+        }
+
+        .service-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .service-content p {
+            color: var(--text-muted);
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* === PRODUCT CATALOG === */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem 2rem;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: var(--transition-smooth);
+            background-color: var(--bg-surface);
+            border-radius: 8px;
+            border: 1px solid rgba(240, 241, 242, 0.05);
+            padding: 1rem;
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            background-color: var(--bg-dark);
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+            opacity: 0.85;
+        }
+
+        .product-card:hover .product-image { 
+            transform: scale(1.03); 
+            opacity: 1;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.4);
+            border-color: rgba(112, 166, 193, 0.2);
+        }
+
+        .product-info h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .product-info p { font-size: 0.9rem; margin-bottom: 1.5rem; min-height: 45px; }
+        .product-info .btn { width: 100%; padding: 0.8rem; font-size: 0.85rem; }
+
+        /* === ABOUT SECTION === */
+        #about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 1px solid rgba(240, 241, 242, 0.05);
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(240, 241, 242, 0.1);
+            padding-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* === CONTACT SECTION === */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            background-color: var(--bg-card); /* Uses the dark blue #2F3675 */
+            padding: 4rem;
+            border-radius: 12px;
+            border: 1px solid rgba(112, 166, 193, 0.1);
+        }
+
+        .contact-info h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-intro-text {
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-list {
+            list-style: none;
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-list-item {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.05rem;
+            font-weight: 400;
+        }
+
+        .contact-list-item a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-list-item a:hover {
+            color: var(--accent);
+        }
+
+        .branch-details {
+            border-top: 1px solid rgba(240, 241, 242, 0.1);
+            margin-top: 2rem;
+            padding-top: 2rem;
+        }
+
+        .branch-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: rgba(18, 18, 18, 0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(240, 241, 242, 0.05);
+            transition: var(--transition-smooth);
+        }
+
+        .branch-item:hover {
+            border-color: rgba(112, 166, 193, 0.4);
+            background-color: rgba(18, 18, 18, 0.5);
+        }
+
+        .branch-name {
+            font-size: 1.2rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.5rem;
+        }
+
+        .branch-address {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .map-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+            min-height: 600px;
+            border-radius: 8px;
+            border: 1px solid rgba(240, 241, 242, 0.1);
+            transition: border-color 0.4s ease, filter 0.5s ease;
+            filter: grayscale(60%) invert(90%) hue-rotate(180deg) contrast(85%); /* Sleeker dark mode map */
+        }
+
+        .map-container:hover {
+            filter: grayscale(0%) invert(0%) hue-rotate(0deg) contrast(100%);
+            border-color: var(--accent-hover);
+        }
+
+        /* === FLOATING ACTION BUTTON === */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent-hover);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            z-index: 100;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid transparent;
+        }
+
+        .fab:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent);
+            box-shadow: 0 8px 25px rgba(112, 166, 193, 0.3);
+            color: var(--bg-dark);
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 1200px) {
+             .contact-container { grid-template-columns: 1fr; gap: 3rem; }
+             .map-container { min-height: 400px; }
+        }
+
+        @media (max-width: 1024px) {
+            #about { grid-template-columns: 1fr; }
+            .about-image { height: 400px; }
+            .contact-container { padding: 2rem; }
+            .hero-content h1 { font-size: 3.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(18, 18, 18, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                gap: 2rem;
+                transform: translateY(-150%);
+                opacity: 0;
+                transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+                z-index: -1;
+                border-bottom: 1px solid rgba(240, 241, 242, 0.05);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .menu-toggle { display: block; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-content .location-text { display: block; margin-left: 0; margin-top: 0.5rem; } /* Stack on tiny screens for readability */
+            section { padding: 5rem 5%; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#home" class="logo">
+                <img src="image_7ce0a4.jpg" alt="Jelos Cell Depot Logo">
+                Jelos <span>Cell Depot</span>
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#catalog">Catalog</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <a href="https://web.facebook.com/profile.php?id=100063708566353" target="_blank" title="Visit our Facebook Page">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="hero-content">
+                <h1>JELOS CELL DEPOT. <span class="location-text">Sto. Domingo, Ilocos Sur.</span></h1>
+                <p>Expert repairs, premium accessories, and reliable digital services in Sto. Domingo and Vigan.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;" class="hero-buttons">
+                    <a href="#catalog" class="btn btn-accent">Shop Gear</a>
+                    <a href="https://web.facebook.com/profile.php?id=100063708566353" target="_blank" class="btn">Message Us</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid cascading-animation-target">
+                
+                <div class="service-card animate-on-scroll">
+                    <img src="728453864_1728826629250939_8843872172816385439_n.jpg" alt="Device Repair Workspace" class="service-bg">
+                    <div class="service-content">
+                        <h3>Device Repair</h3>
+                        <p>Expert cellphone and laptop repair. Fast, reliable workmanship directly at our stations.</p>
+                    </div>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=800&auto=format&fit=crop" alt="Printing Services" class="service-bg">
+                    <div class="service-content">
+                        <h3>High-Quality Printing</h3>
+                        <p>Convenient, affordable printing for everyone in Sto. Domingo.</p>
+                    </div>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop" alt="E-Load Services" class="service-bg">
+                    <div class="service-content">
+                        <h3>E-Load Services</h3>
+                        <p>Fast mobile load and e-load for all networks.</p>
+                    </div>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <img src="728544138_1728826672584268_6629996911912000411_n.jpg" alt="Digital Solutions Hardware" class="service-bg">
+                    <div class="service-content">
+                        <h3>Digital Solutions</h3>
+                        <p>Keeping your devices at their best for work, education, and everyday life.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="catalog">
+            <h2 class="section-title">Premium Gear</h2>
+            <div class="catalog-grid cascading-animation-target">
+                
+                <div class="product-card animate-on-scroll" data-category="charging">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1615526675159-e248c3021d3f?q=80&w=800&auto=format&fit=crop" alt="Chargers and Cables" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3>Chargers & Cables</h3>
+                        <p>Fast-charging adapters and durable, tangle-free cables.</p>
+                        <a href="https://web.facebook.com/profile.php?id=100063708566353" target="_blank" class="btn btn-accent">Inquire on FB</a>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll" data-category="protection">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1603313011101-320f26a4f6f6?q=80&w=800&auto=format&fit=crop" alt="Phone Cases" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3>Phone Cases</h3>
+                        <p>Durable cases for models from Galaxy S22 Ultra to latest iPhones.</p>
+                        <a href="https://web.facebook.com/profile.php?id=100063708566353" target="_blank" class="btn btn-accent">Inquire on FB</a>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll" data-category="protection">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1541560052-5e137f229371?q=80&w=800&auto=format&fit=crop" alt="Tempered Glass" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3>Tempered Glass</h3>
+                        <p>Maximum screen protection against drops and scratches.</p>
+                        <a href="https://web.facebook.com/profile.php?id=100063708566353" target="_blank" class="btn btn-accent">Inquire on FB</a>
+                    </div>
+                </div>
+
+                <div class="product-card animate-on-scroll" data-category="audio">
+                    <div class="product-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop" alt="Audio & Peripherals" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h3>Audio & Peripherals</h3>
+                        <p>Premium earphones, gaming headsets, and computer accessories.</p>
+                        <a href="https://web.facebook.com/profile.php?id=100063708566353" target="_blank" class="btn btn-accent">Inquire on FB</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="about" class="animate-on-scroll">
+            <img src="727323067_1728836415916627_3701162821631627480_n.jpg" alt="Jelos Cell Depot Team" class="about-image">
+            <div class="about-text">
+                <h2>Our Story</h2>
+                <p>
+                    Jelos Cell Depot is a trusted technology solutions center located in Sto. Domingo and Vigan, dedicated to providing reliable, affordable, and professional services for the community's digital and communication needs. 
+                </p>
+                <p>
+                    Committed to customer satisfaction, quality workmanship, and dependable service, we aim to help customers keep their devices functioning at their best. We are a customer-focused partner for your digital service needs, ready to assist you right at our counters.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="animate-on-scroll">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Visit Us</h2>
+                    <p class="contact-intro-text cascading-item">Send us a message now and visit our shops today!</p>
+                    
+                    <ul class="contact-list cascading-item">
+                        <li class="contact-list-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            Contact Number: 0916 713 0941
+                        </li>
+                        <li class="contact-list-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--accent)"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+                            <a href="https://web.facebook.com/profile.php?id=100063708566353" target="_blank">Connect with us on Facebook</a>
+                        </li>
+                    </ul>
+
+                    <div class="branch-details cascading-item">
+                         <h3 class="branch-section-title" style="margin-bottom:1rem;">Our Locations</h3>
+                        
+                        <div class="branch-item branch-cascading-item">
+                            <h4 class="branch-name">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
+                                Sto. Domingo Branch
+                            </h4>
+                            <p class="branch-address">Public Market Vacunero, Sto. Domingo, Ilocos Sur</p>
+                            <a href="#" class="btn btn-maps" data-branch="sto_domingo" id="btn-map-sto">Show on Map</a>
+                        </div>
+                        
+                        <div class="branch-item branch-cascading-item">
+                            <h4 class="branch-name">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
+                                Vigan Branch
+                            </h4>
+                            <p class="branch-address">Jelos Cell Depot Branch #86 Rizal Street, Pagburnayan, Brgy. 8, Vigan City, Ilocos Sur</p>
+                            <a href="#" class="btn btn-maps" data-branch="vigan" id="btn-map-vigan">Show on Map</a>
+                        </div>
+                    </div>
+                    
+                    <a href="https://web.facebook.com/profile.php?id=100063708566353" target="_blank" class="btn btn-accent cascading-item" style="width: 100%; margin-top: 1.5rem;">Send a Direct Message</a>
+                </div>
+
+                <div class="map-wrapper" id="map-wrap">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15447.28859942426!2d120.4077651!3d17.6534571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x338f0d86e11e3b01%3A0x6d9f8c6d480d0758!2sSto.%20Domingo%2C%20Ilocos%20Sur%2C%20Philippines!5e0!3m2!1sen!2sus!4v1716942634455!5m2!1sen!2sus" 
+                        class="map-container"
+                        id="map-iframe"
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <a href="https://web.facebook.com/profile.php?id=100063708566353" target="_blank" class="fab" aria-label="Message Us on Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle Logic
+            const menuToggle = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+            const links = navLinks.querySelectorAll('a');
+
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when a link is clicked
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // --- Enhanced Animations Logic ---
+
+            // General On-Scroll Animations
+            const animateOnScroll = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.15 }); 
+
+            animateOnScroll.forEach(el => observer.observe(el));
+
+            // Cascading Animations for Grids
+            const setupCascading = (containerSelector, itemSelector, initialDelay = 0.2, step = 0.1) => {
+                const container = document.querySelector(containerSelector);
+                if (!container) return;
+
+                const items = container.querySelectorAll(itemSelector);
+                
+                const containerObserver = new IntersectionObserver((entries) => {
+                     entries.forEach(entry => {
+                        if (entry.isIntersecting && !container.classList.contains('cascaded')) {
+                             container.classList.add('cascaded');
+                             items.forEach((item, index) => {
+                                 item.style.transitionDelay = `${initialDelay + index * step}s`;
+                                 item.classList.add('animated');
+                             });
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                containerObserver.observe(container);
+            };
+
+            // Apply cascading
+            setupCascading('.cascading-animation-target', '.animate-on-scroll', 0.1, 0.1);
+            setupCascading('.contact-info', '.cascading-item', 0.2, 0.1);
+            setupCascading('.branch-details', '.branch-cascading-item', 0.3, 0.1);
+
+            // --- Map Logic for Two Branches ---
+            const mapIframe = document.getElementById('map-iframe');
+            const btnSto = document.getElementById('btn-map-sto');
+            const btnVigan = document.getElementById('btn-map-vigan');
+
+            const mapLinks = {
+                'sto_domingo': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15447.28859942426!2d120.4077651!3d17.6534571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x338f0d86e11e3b01%3A0x6d9f8c6d480d0758!2sSto.%20Domingo%2C%20Ilocos%20Sur%2C%20Philippines!5e0!3m2!1sen!2sus!4v1716942634455!5m2!1sen!2sus',
+                'vigan': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.8548231362083!2d120.3857503154828!3d17.572186987979667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x338f0d7e6f164293%3A0x7d6b9d62d2946c7!2sVigan%20City%2C%20Ilocos%20Sur%2C%20Philippines!5e0!3m2!1sen!2sus!4v1716942674455!5m2!1sen!2sus'
+            };
+
+            const updateMap = (branch) => {
+                 if (!mapLinks[branch]) return;
+                 mapIframe.style.opacity = 0; 
+                 
+                 setTimeout(() => {
+                     mapIframe.src = mapLinks[branch];
+                     mapIframe.onload = () => { mapIframe.style.opacity = 1; };
+                 }, 300);
+            };
+
+            const branchButtons = [btnSto, btnVigan];
+            branchButtons.forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', (e) => {
+                         e.preventDefault();
+                         const branchId = e.target.dataset.branch;
+                         updateMap(branchId);
+                         
+                         branchButtons.forEach(b => {
+                             b.classList.remove('btn-accent');
+                             b.style.borderColor = 'rgba(240, 241, 242, 0.3)';
+                         });
+                         btn.classList.add('btn-accent');
+                    });
+                }
+            });
+            
+            if (btnSto) {
+                btnSto.classList.add('btn-accent');
+            }
+        });
+    </script>
+</body>
+</html>
