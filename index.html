@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jelos Cell Depot | Repair & Accessories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: '#1E3A8A', // Deep Blue
+                        secondary: '#3B82F6', // Lighter Blue
+                        accent: '#EFF6FF', // Background Blue
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Smooth Scrolling & Custom Animations */
+        html { scroll-behavior: smooth; }
+        
+        /* Fade-in Animation Classes */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* FAQ Accordion Transitions */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px; /* Arbitrary large max-height */
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased overflow-x-hidden">
+
+    <div class="bg-primary text-white text-center text-sm py-2 px-4 flex justify-center items-center gap-4">
+        <span>Exclusive Deal! 15% Off All Phone Repairs for Students. Limited time!</span>
+        <a href="#contact" class="font-bold underline hover:text-blue-200 transition">Book Now <i class="fa-solid fa-arrow-right ml-1 text-xs"></i></a>
+    </div>
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-mobile-screen-button text-3xl text-primary"></i>
+                    <div class="flex flex-col leading-tight">
+                        <span class="font-bold text-xl text-primary tracking-tight">JELOS</span>
+                        <span class="text-xs font-semibold text-slate-500 tracking-widest">CELL DEPOT</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-8 items-center font-medium text-slate-600">
+                    <a href="#home" class="hover:text-primary transition">Home</a>
+                    <a href="#services" class="hover:text-primary transition">Services <i class="fa-solid fa-chevron-down text-xs"></i></a>
+                    <a href="#features" class="hover:text-primary transition">Accessories</a>
+                    <a href="#about" class="hover:text-primary transition">About</a>
+                    <a href="#contact" class="hover:text-primary transition">Contact</a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-4">
+                    <button class="text-slate-500 hover:text-primary transition"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg font-medium transition">Login</button>
+                    <a href="#contact" class="bg-primary hover:bg-blue-800 text-white px-5 py-2 rounded-lg font-medium shadow-md hover:shadow-lg transition">Book a Repair</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative pt-20 pb-32 overflow-hidden bg-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-section">
+                    <h1 class="text-5xl md:text-6xl font-extrabold text-primary leading-tight mb-6">
+                        JELOS <br><span class="text-secondary">CELL DEPOT</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
+                        Your trusted one-stop shop for expert cellphone and laptop repairs, high-quality accessories, printing, and e-load services in Sto. Domingo, Ilocos Sur.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#services" class="bg-primary hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-transform hover:-translate-y-1">Explore Services</a>
+                        <a href="#contact" class="bg-white border-2 border-slate-200 hover:border-slate-300 text-slate-700 px-6 py-3 rounded-lg font-semibold transition-transform hover:-translate-y-1">Visit Our Store</a>
+                    </div>
+                </div>
+                <div class="relative fade-in-section hidden md:block">
+                    <div class="absolute inset-0 bg-blue-200 rounded-full blur-3xl opacity-50 transform translate-x-10 translate-y-10"></div>
+                    <img src="https://images.unsplash.com/photo-1597740985671-2a8a3b80502e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Phone Repair" class="relative z-10 rounded-2xl shadow-2xl border-4 border-white transform rotate-3 hover:rotate-0 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 text-center fade-in-section">
+            <p class="text-sm font-bold tracking-widest text-slate-400 uppercase mb-6">Proudly Serving Our Local Community & Supporting Devices From</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <i class="fa-brands fa-apple text-4xl"></i>
+                <span class="font-bold text-2xl">SAMSUNG</span>
+                <span class="font-bold text-2xl tracking-tighter text-blue-600">Globe</span>
+                <span class="font-bold text-2xl tracking-tighter text-green-500">Smart</span>
+                <span class="font-bold text-2xl tracking-tighter text-red-500">PLDT</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12 fade-in-section">
+                <h2 class="text-3xl font-bold text-slate-800">Our Impact in Numbers</h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-center fade-in-section hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-blue-100 text-primary rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-slate-800 mb-1" data-target="35000">0</h3>
+                    <p class="text-sm text-slate-500 font-medium">Devices Repaired</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-center fade-in-section hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-blue-100 text-primary rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-slate-800 mb-1" data-target="18000">0</h3>
+                    <p class="text-sm text-slate-500 font-medium">Satisfied Customers</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-center fade-in-section hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-blue-100 text-primary rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-slate-800 mb-1">98.2%</h3>
+                    <p class="text-sm text-slate-500 font-medium">On-Time Service</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 text-center fade-in-section hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-blue-100 text-primary rounded-full flex items-center justify-center mx-auto mb-4 text-xl">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-slate-800 mb-1" data-target="12">0</h3>
+                    <p class="text-sm text-slate-500 font-medium">Years in Service</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in-section">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">Core Features & Services</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">More than just repairs. We offer a comprehensive suite of services to keep you connected and productive.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-accent border border-blue-100 text-center fade-in-section hover:-translate-y-2 transition duration-300">
+                    <i class="fa-solid fa-screwdriver-wrench text-4xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Expert Repair</h3>
+                    <p class="text-slate-600 text-sm">Hardware and software fixes for smartphones, tablets, and laptops by certified technicians.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-accent border border-blue-100 text-center fade-in-section hover:-translate-y-2 transition duration-300">
+                    <i class="fa-solid fa-headphones text-4xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Premium Accessories</h3>
+                    <p class="text-slate-600 text-sm">Find durable cases, high-speed chargers, earphones, and tempered glass protectors.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-accent border border-blue-100 text-center fade-in-section hover:-translate-y-2 transition duration-300">
+                    <i class="fa-solid fa-print text-4xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Printing Solutions</h3>
+                    <p class="text-slate-600 text-sm">High-quality document printing, scanning, and photocopying services for students and pros.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-accent border border-blue-100 text-center fade-in-section hover:-translate-y-2 transition duration-300">
+                    <i class="fa-solid fa-bolt text-4xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">E-Load Services</h3>
+                    <p class="text-slate-600 text-sm">Instant prepaid mobile credits and data packages for all major local networks.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-primary text-white text-center shadow-lg fade-in-section hover:-translate-y-2 transition duration-300 scale-105">
+                    <i class="fa-solid fa-stopwatch text-4xl mb-4 text-blue-200"></i>
+                    <h3 class="text-xl font-bold mb-2">Quick Turnaround</h3>
+                    <p class="text-blue-100 text-sm">Most standard repairs are completed within 1-2 hours while you wait.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-accent border border-blue-100 text-center fade-in-section hover:-translate-y-2 transition duration-300">
+                    <i class="fa-solid fa-handshake-angle text-4xl text-primary mb-4"></i>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Community Focused</h3>
+                    <p class="text-slate-600 text-sm">Proudly supporting Sto. Domingo locals with honest pricing and reliable support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-50 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 fade-in-section">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">Simple Repair Process</h2>
+                <p class="text-slate-600">How we get your device back to perfect condition.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center relative fade-in-section">
+                <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-blue-200 -z-10 transform -translate-y-1/2"></div>
+                
+                <div class="bg-white p-4 rounded-full w-24 h-24 flex flex-col justify-center items-center shadow-md border-4 border-accent z-10 mb-6 md:mb-0">
+                    <i class="fa-solid fa-magnifying-glass text-2xl text-primary"></i>
+                    <span class="text-xs font-bold mt-1">Diagnostic</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-slate-300 hidden md:block"></i>
+                
+                <div class="bg-white p-4 rounded-full w-24 h-24 flex flex-col justify-center items-center shadow-md border-4 border-accent z-10 mb-6 md:mb-0">
+                    <i class="fa-solid fa-file-invoice text-2xl text-primary"></i>
+                    <span class="text-xs font-bold mt-1">Estimate</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-slate-300 hidden md:block"></i>
+
+                <div class="bg-primary text-white p-4 rounded-full w-28 h-28 flex flex-col justify-center items-center shadow-lg border-4 border-blue-200 z-10 scale-110 mb-6 md:mb-0">
+                    <i class="fa-solid fa-wrench text-3xl"></i>
+                    <span class="text-sm font-bold mt-1">Repair</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-slate-300 hidden md:block"></i>
+
+                <div class="bg-white p-4 rounded-full w-24 h-24 flex flex-col justify-center items-center shadow-md border-4 border-accent z-10 mb-6 md:mb-0">
+                    <i class="fa-solid fa-check-double text-2xl text-primary"></i>
+                    <span class="text-xs font-bold mt-1">QC Check</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-slate-300 hidden md:block"></i>
+
+                <div class="bg-white p-4 rounded-full w-24 h-24 flex flex-col justify-center items-center shadow-md border-4 border-accent z-10">
+                    <i class="fa-solid fa-box-open text-2xl text-primary"></i>
+                    <span class="text-xs font-bold mt-1">Pickup</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12 fade-in-section">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4">Protection & Maintenance Plans</h2>
+                <p class="text-slate-600 mb-8">Choose a plan for ongoing device protection or pay-per-repair.</p>
+                
+                <div class="flex items-center justify-center gap-4 text-sm font-semibold text-slate-600">
+                    <span id="monthly-label" class="text-primary">Monthly</span>
+                    <button id="billing-toggle" class="w-14 h-8 bg-primary rounded-full relative transition-colors focus:outline-none">
+                        <div id="toggle-circle" class="w-6 h-6 bg-white rounded-full absolute top-1 left-1 transition-transform"></div>
+                    </button>
+                    <span id="yearly-label">Yearly <span class="text-xs text-green-500 ml-1">(Save 20%)</span></span>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 text-center fade-in-section">
+                    <h3 class="text-lg font-bold text-slate-600 mb-2 uppercase tracking-wide">Basic</h3>
+                    <div class="text-4xl font-extrabold text-slate-800 mb-6">₱<span class="price-val" data-monthly="499" data-yearly="4990">499</span><span class="text-sm text-slate-500 font-normal">/mo</span></div>
+                    <ul class="text-sm text-slate-600 space-y-4 mb-8 text-left">
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> 1 Free Diagnostic/mo</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> 10% off all repairs</li>
+                        <li><i class="fa-solid fa-xmark text-red-400 mr-2"></i> No priority queue</li>
+                        <li><i class="fa-solid fa-xmark text-red-400 mr-2"></i> No free accessories</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-lg bg-white border-2 border-primary text-primary font-bold hover:bg-blue-50 transition">Get Started</button>
+                </div>
+
+                <div class="bg-primary text-white rounded-2xl p-8 border border-blue-600 shadow-2xl transform md:-translate-y-4 text-center fade-in-section relative">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Most Popular</div>
+                    <h3 class="text-lg font-bold text-blue-200 mb-2 uppercase tracking-wide">Family Premium</h3>
+                    <div class="text-5xl font-extrabold mb-6">₱<span class="price-val" data-monthly="1299" data-yearly="12990">1,299</span><span class="text-sm text-blue-200 font-normal">/mo</span></div>
+                    <ul class="text-sm space-y-4 mb-8 text-left">
+                        <li><i class="fa-solid fa-check text-yellow-400 mr-2"></i> Covers up to 4 devices</li>
+                        <li><i class="fa-solid fa-check text-yellow-400 mr-2"></i> Priority VIP Queue</li>
+                        <li><i class="fa-solid fa-check text-yellow-400 mr-2"></i> 25% off all repairs</li>
+                        <li><i class="fa-solid fa-check text-yellow-400 mr-2"></i> 2 Free Screen Protectors/yr</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-lg bg-yellow-400 text-yellow-900 font-bold hover:bg-yellow-300 transition shadow-lg">Subscribe Now</button>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 text-center fade-in-section">
+                    <h3 class="text-lg font-bold text-slate-600 mb-2 uppercase tracking-wide">Business Pro</h3>
+                    <div class="text-4xl font-extrabold text-slate-800 mb-6">₱<span class="price-val" data-monthly="2499" data-yearly="24990">2,499</span><span class="text-sm text-slate-500 font-normal">/mo</span></div>
+                    <ul class="text-sm text-slate-600 space-y-4 mb-8 text-left">
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Up to 10 company devices</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> On-site pickup & delivery</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> 30% off bulk repairs</li>
+                        <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Dedicated account manager</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-lg bg-white border-2 border-primary text-primary font-bold hover:bg-blue-50 transition">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-3xl mx-auto px-4 fade-in-section">
+            <h2 class="text-3xl font-bold text-center text-slate-800 mb-10">Frequently Asked Questions</h2>
+            
+            <div class="space-y-4">
+                <div class="faq-item bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
+                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-semibold text-slate-800">How long do common repairs take?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 faq-icon transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-slate-50">
+                        <p class="py-4 text-sm text-slate-600 border-t border-slate-100">Screen replacements and battery swaps usually take 45 minutes to 2 hours. Complex motherboard repairs or water damage diagnostics may take 1 to 3 business days.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
+                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-semibold text-slate-800">What is your warranty policy?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 faq-icon transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-slate-50">
+                        <p class="py-4 text-sm text-slate-600 border-t border-slate-100">We offer a standard 30-day warranty on all repair labor and a 90-day warranty on installed parts (excluding accidental physical damage post-repair).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
+                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-semibold text-slate-800">Do you use genuine parts?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 faq-icon transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-slate-50">
+                        <p class="py-4 text-sm text-slate-600 border-t border-slate-100">We offer options for both OEM (Original Equipment Manufacturer) parts and high-quality aftermarket alternatives, allowing you to choose based on your budget.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
+                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                        <span class="font-semibold text-slate-800">Can I track my repair status online?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 faq-icon transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-slate-50">
+                        <p class="py-4 text-sm text-slate-600 border-t border-slate-100">Yes! When you drop off your device, we will provide you with a ticket number. You can enter this ticket number on our website portal to see live updates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-300 py-12 border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8">
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-mobile-screen-button text-2xl text-secondary"></i>
+                    <span class="font-bold text-xl text-white">JELOS</span>
+                </div>
+                <p class="text-sm text-slate-400 mb-4">Your trusted one-stop shop for tech solutions in Sto. Domingo, Ilocos Sur.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fa-brands fa-twitter text-xl"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-4">Services</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-secondary transition">Phone Repair</a></li>
+                    <li><a href="#" class="hover:text-secondary transition">Laptop Repair</a></li>
+                    <li><a href="#" class="hover:text-secondary transition">Accessories</a></li>
+                    <li><a href="#" class="hover:text-secondary transition">Printing & E-Load</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-4">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-secondary transition">About Us</a></li>
+                    <li><a href="#" class="hover:text-secondary transition">Contact</a></li>
+                    <li><a href="#" class="hover:text-secondary transition">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-secondary transition">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-4">Stay Connected</h4>
+                <p class="text-xs text-slate-400 mb-3">Subscribe for tech tips and exclusive repair discounts.</p>
+                <form class="flex">
+                    <input type="email" placeholder="Email Address" class="px-3 py-2 rounded-l-lg w-full text-slate-800 focus:outline-none text-sm">
+                    <button type="submit" class="bg-primary hover:bg-blue-600 px-4 py-2 rounded-r-lg text-white font-semibold transition text-sm">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2026 Jelos Cell Depot. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // 1. Intersection Observer for Fade-In Animations
+        document.addEventListener("DOMContentLoaded", function() {
+            const faders = document.querySelectorAll('.fade-in-section');
+            const appearOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    
+                    // Simple number counter animation for stats
+                    const targetNum = entry.target.querySelector('[data-target]');
+                    if (targetNum && !targetNum.classList.contains('counted')) {
+                        const target = parseInt(targetNum.getAttribute('data-target'));
+                        let count = 0;
+                        const increment = target / 50; // Speed adjustment
+                        const updateCount = () => {
+                            if(count < target) {
+                                count += increment;
+                                targetNum.innerText = Math.ceil(count).toLocaleString();
+                                setTimeout(updateCount, 30);
+                            } else {
+                                targetNum.innerText = target.toLocaleString() + (target > 100 ? '+' : '');
+                            }
+                        };
+                        updateCount();
+                        targetNum.classList.add('counted');
+                    }
+                    
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // 2. Pricing Toggle Logic
+            const toggleBtn = document.getElementById('billing-toggle');
+            const toggleCircle = document.getElementById('toggle-circle');
+            const priceEls = document.querySelectorAll('.price-val');
+            const monthlyLabel = document.getElementById('monthly-label');
+            const yearlyLabel = document.getElementById('yearly-label');
+            let isYearly = false;
+
+            toggleBtn.addEventListener('click', () => {
+                isYearly = !isYearly;
+                
+                // Animate Toggle switch
+                if(isYearly) {
+                    toggleCircle.style.transform = 'translateX(1.5rem)';
+                    monthlyLabel.classList.remove('text-primary');
+                    yearlyLabel.classList.add('text-primary', 'font-bold');
+                } else {
+                    toggleCircle.style.transform = 'translateX(0)';
+                    yearlyLabel.classList.remove('text-primary', 'font-bold');
+                    monthlyLabel.classList.add('text-primary');
+                }
+
+                // Update Prices
+                priceEls.forEach(el => {
+                    // Fade out
+                    el.style.opacity = 0;
+                    setTimeout(() => {
+                        el.innerText = isYearly ? parseInt(el.getAttribute('data-yearly')).toLocaleString() : parseInt(el.getAttribute('data-monthly')).toLocaleString();
+                        // Fade in
+                        el.style.transition = 'opacity 0.3s ease';
+                        el.style.opacity = 1;
+                    }, 150);
+                });
+            });
+
+            // 3. FAQ Accordion Logic
+            const faqItems = document.querySelectorAll('.faq-item button');
+            faqItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const parent = item.parentElement;
+                    const isActive = parent.classList.contains('active');
+                    
+                    // Close all first
+                    document.querySelectorAll('.faq-item').forEach(faq => {
+                        faq.classList.remove('active');
+                    });
+
+                    // If it wasn't active, open it
+                    if (!isActive) {
+                        parent.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
